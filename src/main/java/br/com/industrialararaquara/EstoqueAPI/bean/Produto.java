@@ -1,5 +1,6 @@
 package br.com.industrialararaquara.EstoqueAPI.bean;
 
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -7,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Produto implements Serializable {
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
+public class Produto implements Serializable{
+			
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
