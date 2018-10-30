@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import br.com.industrialararaquara.EstoqueAPI.bean.Produto;
 import br.com.industrialararaquara.EstoqueAPI.repository.ProdutoRepository;
 
@@ -20,7 +22,13 @@ public class ProdutoRest {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
-	@GetMapping(path="/estoque")
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<Iterable<Produto>> recuperarTodosProdutos(){
+		Iterable<Produto> produtos = produtoRepository.findAll();
+		return new ResponseEntity<>(produtos, HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value="/{id}")
 	public ResponseEntity<Produto> recuperarProdutoPorId(@PathVariable("id") Integer id) {
 	try {
